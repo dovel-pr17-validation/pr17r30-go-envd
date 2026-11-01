@@ -1,0 +1,15 @@
+def build():
+    base(dev=True)
+    install.conda()
+    install.python()
+    install.cuda(version="11.2.2", cudnn="8")
+    install.python_packages(
+        [
+            "torch",
+            "torchvision",
+            "bitsandbytes",
+            "accelerate",
+            "transformers",
+            "--extra-index-url https://download.pytorch.org/whl/cu113",
+        ]
+    )

@@ -1,0 +1,8 @@
+envdlib = include("https://github.com/tensorchord/envdlib")
+
+
+def build():
+    base(dev=True)
+    install.conda()
+    install.python()
+    envdlib.tensorboard(8888)

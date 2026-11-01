@@ -1,0 +1,18 @@
+def build():
+    base(dev=True)
+    install.conda()
+    install.python()
+    # config.pip_index(url = "https://pypi.tuna.tsinghua.edu.cn/simple")
+    install.python_packages(
+        [
+            "via",
+        ]
+    )
+    io.copy("./build.envd", "/")
+    runtime.command(
+        commands={
+            "test": "ls /",
+        }
+    )
+    runtime.environ(env={"ENVD_MODE": "DEV"})
+    config.jupyter()

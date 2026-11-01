@@ -1,0 +1,6 @@
+def build():
+    base(dev=True)
+    install.julia()
+    # config.julia_pkg_server(url="https://mirrors.tuna.tsinghua.edu.cn/julia")
+    install.julia_packages(["Example"])
+    shell("zsh")

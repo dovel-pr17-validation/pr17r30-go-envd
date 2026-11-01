@@ -1,0 +1,11 @@
+def build():
+    base(dev=True)
+    install.r_lang()
+    install.r_packages(
+        [
+            "remotes",
+            "rlang",
+        ]
+    )
+    config.rstudio_server()
+    shell("zsh")

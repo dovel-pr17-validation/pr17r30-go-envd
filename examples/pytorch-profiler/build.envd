@@ -1,0 +1,18 @@
+envdlib = include("https://github.com/tensorchord/envdlib")
+
+
+def build():
+    base(dev=True)
+    install.conda()
+    install.python()
+    shell("zsh")
+    install.cuda(version="11.2.2", cudnn="8")
+    install.python_packages(
+        [
+            "torch",
+            "torchvision",
+            "torch_tb_profiler",
+            "--extra-index-url https://download.pytorch.org/whl/cu113",
+        ]
+    )
+    envdlib.tensorboard(envd_port=8888, envd_dir="/home/envd/log", host_port=8888)

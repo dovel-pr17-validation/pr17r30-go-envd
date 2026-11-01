@@ -1,0 +1,8 @@
+def build():
+    base(image="python:3.11-slim", dev=True)
+    install.python_packages(
+        name=[
+            "via",
+        ]
+    )
+    config.entrypoint(["date", "-u"])

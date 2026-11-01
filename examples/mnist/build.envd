@@ -1,0 +1,35 @@
+def base_env():
+    base(dev=True)
+    install.conda()
+    install.python()
+    install.vscode_extensions(
+        [
+            "ms-python.python",
+        ]
+    )
+    shell("zsh")
+    config.jupyter()
+    # config.pip_index(url = "https://pypi.tuna.tsinghua.edu.cn/simple")
+
+
+def build():
+    base_env()
+    install.python_packages(
+        [
+            "torch",
+            "torchvision",
+            "--extra-index-url https://download.pytorch.org/whl/cpu",
+        ]
+    )
+
+
+def build_gpu():
+    base_env()
+    install.cuda(version="11.2.2", cudnn="8")
+    install.python_packages(
+        [
+            "torch",
+            "torchvision",
+            "--extra-index-url https://download.pytorch.org/whl/cu113",
+        ]
+    )

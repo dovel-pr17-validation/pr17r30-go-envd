@@ -1,0 +1,36 @@
+# syntax=v1
+
+
+def build():
+    base(dev=True)
+    install.cuda(version="11.8.0", cudnn="8")
+    install.conda()
+    install.python()
+    config.apt_source(
+        source="""
+deb https://mirror.sjtu.edu.cn/ubuntu jammy main restricted
+deb https://mirror.sjtu.edu.cn/ubuntu jammy-updates main restricted
+deb https://mirror.sjtu.edu.cn/ubuntu jammy universe
+deb https://mirror.sjtu.edu.cn/ubuntu jammy-updates universe
+deb https://mirror.sjtu.edu.cn/ubuntu jammy multiverse
+deb https://mirror.sjtu.edu.cn/ubuntu jammy-updates multiverse
+deb https://mirror.sjtu.edu.cn/ubuntu jammy-backports main restricted universe multiverse
+deb http://archive.canonical.com/ubuntu jammy partner
+deb https://mirror.sjtu.edu.cn/ubuntu jammy-security main restricted universe multiverse
+"""
+    )
+    config.pip_index(url="https://mirror.sjtu.edu.cn/pypi/web/simple")
+    install.vscode_extensions(
+        [
+            "ms-python.python",
+        ]
+    )
+    install.python_packages(
+        name=[
+            "numpy",
+        ]
+    )
+    shell("zsh")
+    install.apt_packages(name=["htop"])
+    git_config(name="Ce Gao", email="cegao@tensorchord.ai", editor="vim")
+    run(["ls -la"])

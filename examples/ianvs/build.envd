@@ -1,0 +1,15 @@
+def build():
+    base(dev=True)
+    install.conda()
+    install.python()
+    shell("zsh")
+    install.apt_packages(name=["git", "libgl1-mesa-glx", "zip"])
+    run(
+        commands=[
+            "git clone https://github.com/kubeedge/ianvs.git",
+            "cd ./ianvs",
+            "pip install -r requirements.txt",
+            "pip install ./examples/resources/third_party/*",
+            "python setup.py install",
+        ]
+    )
